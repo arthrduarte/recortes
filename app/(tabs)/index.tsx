@@ -1,6 +1,10 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Pressable } from 'react-native';
+import { StyleSheet, FlatList, Pressable, Dimensions } from 'react-native';
 import { Text, View } from '@/components/Themed';
+import { useRouter } from 'expo-router';
+
+const { width } = Dimensions.get('window');
+const CARD_WIDTH = (width - 60) / 2; // Account for padding and gap
 
 // Sample hobby data - in a real app this would come from API/state management
 const SAMPLE_HOBBIES = [
@@ -24,35 +28,45 @@ function HobbyCard({ hobby, onPress }: HobbyCardProps) {
     <Pressable style={styles.hobbyCard} onPress={onPress}>
       <View style={styles.hobbyCardContent}>
         <Text style={styles.hobbyEmoji}>{hobby.emoji}</Text>
-        <View style={styles.hobbyTextContainer}>
-          <Text style={styles.hobbyName}>{hobby.name}</Text>
-          <Text style={styles.hobbyDescription}>{hobby.description}</Text>
-        </View>
+        <Text style={styles.hobbyName}>{hobby.name}</Text>
+        <Text style={styles.hobbyDescription}>{hobby.description}</Text>
       </View>
     </Pressable>
   );
 }
 
 export default function DiscoverScreen() {
+  const router = useRouter();
+
   const handleHobbyPress = (hobby: typeof SAMPLE_HOBBIES[0]) => {
-    console.log(`Tapped on ${hobby.name} - TODO: Navigate to onboarding flow`);
-    // TODO: Navigate to hobby onboarding flow
+    console.log(`Navigating to onboarding for ${hobby.name}`);
+    router.push({
+      pathname: '/hobby-onboarding',
+      params: { hobbyId: hobby.id, hobbyName: hobby.name, hobbyEmoji: hobby.emoji }
+    });
   };
+
+  const renderHobbyCard = ({ item }: { item: typeof SAMPLE_HOBBIES[0] }) => (
+    <HobbyCard
+      hobby={item}
+      onPress={() => handleHobbyPress(item)}
+    />
+  );
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Discover New Hobbies</Text>
       <Text style={styles.subtitle}>Find something new that sparks your interest</Text>
       
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        {SAMPLE_HOBBIES.map(hobby => (
-          <HobbyCard
-            key={hobby.id}
-            hobby={hobby}
-            onPress={() => handleHobbyPress(hobby)}
-          />
-        ))}
-      </ScrollView>
+      <FlatList
+        data={SAMPLE_HOBBIES}
+        renderItem={renderHobbyCard}
+        numColumns={2}
+        keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={styles.flatListContent}
+        columnWrapperStyle={styles.row}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 }
@@ -73,10 +87,14 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     marginBottom: 24,
   },
-  scrollView: {
-    flex: 1,
+  flatListContent: {
+    paddingBottom: 20,
+  },
+  row: {
+    justifyContent: 'space-between',
   },
   hobbyCard: {
+    width: CARD_WIDTH,
     marginBottom: 16,
     borderRadius: 12,
     backgroundColor: 'rgba(47, 149, 220, 0.05)',
@@ -84,26 +102,24 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(47, 149, 220, 0.1)',
   },
   hobbyCardContent: {
-    flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
     backgroundColor: 'transparent',
   },
   hobbyEmoji: {
     fontSize: 32,
-    marginRight: 16,
-  },
-  hobbyTextContainer: {
-    flex: 1,
-    backgroundColor: 'transparent',
+    marginBottom: 12,
   },
   hobbyName: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
-    marginBottom: 4,
+    marginBottom: 8,
+    textAlign: 'center',
   },
   hobbyDescription: {
-    fontSize: 14,
+    fontSize: 12,
     opacity: 0.7,
+    textAlign: 'center',
+    lineHeight: 16,
   },
 });
