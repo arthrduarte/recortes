@@ -1,0 +1,53 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+/\*
+style.mdc – Material Design Component theme for Recortes (attached to Claude 4 Sonnet)
+
+Design Feeling:
+
+* Modular & Collectible: Each fragment (recorte) feels like a unique, collectible card—organized yet playful.
+* Vibrant & Inviting: Bright primary Vista Blue bursts with creative energy, balanced by warm Purpureus accents.
+* Clean & Spacious: White and light surfaces give breathing room, highlighting each card and icon.
+* Tactile Depth: Subtle shadows and smooth, rounded edges suggest physical cards you can interact with.
+* Dynamic & Responsive: Gentle motion and consistent easing make interactions feel both lively and comforting.
+
+  {
+    "color": {
+      "primary": "#7BA0E4",
+      "secondary": "#A14DA0",     /* Purpureus */
+      "background": "#FFFFFF",    /* Crisp white canvas */
+    },
+    "typography": {
+      "fontFamily": "Inter, sans-serif",
+      "headline1": { "fontWeight": 700, "fontSize": "28px", "lineHeight": "36px" },
+      "body1":      { "fontWeight": 400, "fontSize": "16px", "lineHeight": "24px" },
+      "button":     { "fontWeight": 600, "fontSize": "14px", "lineHeight": "20px", "letterSpacing": "1px" }
+    },
+    "shape": {
+      "borderRadius": "12px"        /* Rounded cards & controls \*/
+    },
+    "elevation": {
+      "card": "0 2px 4px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)",
+      "button": "0 1px 2px rgba(0,0,0,0.1)"
+    },
+    "motion": {
+      "durationShort": "150ms",
+      "durationMedium": "200ms",
+      "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)"
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
