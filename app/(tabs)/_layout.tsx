@@ -5,6 +5,7 @@ import { Tabs } from 'expo-router';
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { CustomTabButton } from '@/components/CustomTabButton';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -22,9 +23,12 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         tabBarStyle: {
+          backgroundColor: Colors[colorScheme ?? 'light'].background,
           borderTopWidth: 0,
         },
         headerShown: false,
+        tabBarShowLabel: false,
+        tabBarButton: CustomTabButton,
       }}>
       <Tabs.Screen
         name="index"
