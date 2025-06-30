@@ -33,19 +33,10 @@ export default function InitialDiscoveryStep({
         {/* Illustration Container */}
         <View style={styles.illustrationContainer}>
           <View style={styles.illustration}>
-            {/* Left blue shape */}
-            <View style={styles.leftShape}>
-              <View style={[styles.shape, styles.blueShape]} />
-              <View style={styles.whiteLine1} />
-              <View style={styles.whiteLine2} />
-            </View>
-            
-            {/* Right green shape */}
-            <View style={styles.rightShape}>
-              <View style={[styles.shape, styles.greenShape]} />
-              <View style={styles.whiteLine3} />
-              <View style={styles.whiteLine4} />
-            </View>
+            {/* Camera emojis */}
+            <Text style={[styles.emoji, styles.cameraEmoji]}>{hobbyEmoji}</Text>
+            <Text style={[styles.emoji, styles.videoEmoji]}>{hobbyEmoji}</Text>
+            <Text style={[styles.emoji, styles.filmEmoji]}>{hobbyEmoji}</Text>
           </View>
         </View>
       </View>
@@ -103,64 +94,25 @@ const styles = StyleSheet.create({
     height: 220,
     position: 'relative',
   },
-  leftShape: {
+  emoji: {
     position: 'absolute',
-    left: 0,
-    top: 20,
+    fontSize: 120,
+    color: '#FFFFFF',
   },
-  rightShape: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-  },
-  shape: {
-    width: 120,
-    height: 140,
-    borderRadius: 60,
-  },
-  blueShape: {
-    backgroundColor: '#7BA0E4',
+  cameraEmoji: {
+    left: -10,
+    top: 10,
     transform: [{ rotate: '-15deg' }],
   },
-  greenShape: {
-    backgroundColor: '#4ADE80',
+  videoEmoji: {
+    right: -20,
+    top: 30,
     transform: [{ rotate: '10deg' }],
   },
-  whiteLine1: {
-    position: 'absolute',
-    bottom: -20,
-    left: 30,
-    width: 40,
-    height: 2,
-    backgroundColor: '#FFFFFF',
-    transform: [{ rotate: '45deg' }],
-  },
-  whiteLine2: {
-    position: 'absolute',
-    bottom: -35,
-    left: 45,
-    width: 25,
-    height: 2,
-    backgroundColor: '#FFFFFF',
-    transform: [{ rotate: '-30deg' }],
-  },
-  whiteLine3: {
-    position: 'absolute',
-    bottom: -15,
-    right: 25,
-    width: 35,
-    height: 2,
-    backgroundColor: '#FFFFFF',
-    transform: [{ rotate: '-45deg' }],
-  },
-  whiteLine4: {
-    position: 'absolute',
-    bottom: -30,
-    right: 40,
-    width: 20,
-    height: 2,
-    backgroundColor: '#FFFFFF',
-    transform: [{ rotate: '60deg' }],
+  filmEmoji: {
+    left: 40,
+    bottom: 20,
+    transform: [{ rotate: '5deg' }],
   },
   footerContainer: {
     paddingHorizontal: 20,
@@ -169,22 +121,16 @@ const styles = StyleSheet.create({
   },
   continueButton: {
     backgroundColor: '#7BA0E4',
-    borderRadius: 12,
+    borderRadius: 16,
     paddingVertical: 16,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#7BA0E4',
   },
   continueButtonText: {
     color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: 16,
+    fontWeight: '700',
     letterSpacing: 1,
     fontFamily: 'Inter',
   },
