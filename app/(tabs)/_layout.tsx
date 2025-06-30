@@ -4,10 +4,9 @@ import { Tabs } from 'expo-router';
 
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
 import { CustomTabButton } from '@/components/CustomTabButton';
+import { Platform, StyleSheet } from 'react-native';
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
@@ -22,13 +21,19 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        tabBarStyle: {
-          backgroundColor: Colors[colorScheme ?? 'light'].background,
-          borderTopWidth: 0,
-        },
         headerShown: false,
-        tabBarShowLabel: false,
-        tabBarButton: CustomTabButton,
+        tabBarStyle: Platform.select({
+          ios: {
+            position: 'absolute',
+            backgroundColor: Colors[colorScheme ?? 'light'].background,
+            borderTopWidth: 0,
+          },
+          default: {
+            backgroundColor: Colors[colorScheme ?? 'light'].background,
+            borderWidth: StyleSheet.hairlineWidth,
+            borderColor: '#79320633',
+          },
+        }),
       }}>
       <Tabs.Screen
         name="index"
