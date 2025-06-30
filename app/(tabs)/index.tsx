@@ -22,7 +22,7 @@ export default function DiscoverScreen() {
   const handleHobbyPress = (hobby: typeof SAMPLE_HOBBIES[0]) => {
     console.log(`Navigating to onboarding for ${hobby.name}`);
     router.push({
-      pathname: '/hobby-onboarding',
+      pathname: '/hobby/discovery',
       params: { hobbyId: hobby.id, hobbyName: hobby.name, hobbyEmoji: hobby.emoji }
     });
   };
